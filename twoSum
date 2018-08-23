@@ -1,0 +1,37 @@
+import java.util.Arrays;
+
+public class Solution {
+    public static void main(String[] args) {
+        int[] input = {-1, -2, -3, -4, -5};
+        int targetNum = -8;
+
+        int[] answerArray = twoSum(input, targetNum);
+        System.out.println(Arrays.toString(answerArray));
+    }
+
+
+    public static int[] twoSum(int[] nums, int target) {
+        int[] answer = new int[2];
+        int wantNum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            //if (nums[i] <= target) {  这里不应该有这个前提，因为没有说输入一定是正数，所以有可能和比输入的数还小，比如，
+            //int[] input = {-1, -2, -3, -4, -5}, target = -8
+
+            answer[0] = i;
+            wantNum = target - nums[i];
+
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] == wantNum) {
+                    answer[1] = j;
+                    return answer;  //之前出错原因：这里写成break，应该是有答案了就立即return 答案， 答案可以在多个地方return。
+                }
+            }
+
+
+        }
+
+        return answer;
+    }
+
+}
