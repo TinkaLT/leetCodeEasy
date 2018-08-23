@@ -31,7 +31,21 @@ public class Solution {
 
         }
 
-        return answer;
+        return answer;//  参考答案：这里修改为抛出异常更加合理throw new IllegalArgumentException("No two sum solution");
+
     }
 
+}
+
+
+参考：
+public int[] twoSum(int[] nums, int target) {
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+            if (nums[j] == target - nums[i]) {
+                return new int[] { i, j };
+            }
+        }
+    }
+    throw new IllegalArgumentException("No two sum solution");
 }
