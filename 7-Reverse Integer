@@ -1,0 +1,55 @@
+import java.lang.Math;
+
+class Solution {
+
+
+    public static void main(String[] args) {
+        int input = 1563847412;
+        int result = 0;
+
+        result = reverse(input);
+        System.out.println("the reverse result is " + result);
+    }
+
+    public static int reverse(int x) {
+        int finalResult = 0;
+        if (x < 0) {
+            x = -x;
+            finalResult = -reverseNum(x);
+            if (finalResult > -2147483648) {
+                return finalResult;
+            }
+            return 0;
+        }
+        return reverseNum(x);
+
+
+    }
+
+    public static int reverseNum(int x) {
+        int divisor = 10;
+        int result = 0;
+
+        while (x > 0) {
+            int y = x % 10;
+            x = x / 10;
+
+            if (x != 0) {
+                int exponentiation = (int) (Math.log10(x) + 1);
+                int mul = (int) Math.pow(10, exponentiation);
+
+                y = y * mul;
+
+                result = result + y;
+            } else {
+                result = result + y;
+            }
+        }
+        if (result == Integer.MAX_VALUE) {
+            return 0;
+        }
+
+        return result;
+
+    }
+}
