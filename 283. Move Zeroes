@@ -1,0 +1,45 @@
+／／not working,陷入死循环
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int currentIndex = nums.length - 1;
+        while(currentIndex >= 0) {
+            if (nums[currentIndex] != 0) {
+                int tempNum = nums[currentIndex];
+                for (int j = currentIndex; j > 0; j--) {
+                    nums[j] = nums[j-1];
+                }
+                nums[0] = tempNum;
+            }
+            currentIndex --;   //当遇到之前调过位置的正数时，无法跳过，又进行和0的比较然后换位
+        }
+        
+    }
+}
+
+修改了， working， 加了个counter
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int currentIndex = nums.length - 1;
+        int counter = -1;
+        while(currentIndex >= 0) {
+            if (nums[currentIndex] != 0) {
+                if(currentIndex!= counter) {
+                    counter ++;
+                    int tempNum = nums[currentIndex];
+                    for (int j = currentIndex; j > 0; j--) {
+                        nums[j] = nums[j-1];
+                    }
+                    nums[0] = tempNum;
+                }
+                else {
+                    break;
+                }
+
+            }
+            if(nums[currentIndex] == 0) {
+                currentIndex --;
+            }
+        }
+        
+    }
+}
