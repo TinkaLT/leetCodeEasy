@@ -1,0 +1,24 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+         if (nums.length == 1 && nums[0] == 0) {
+            return 1;
+        }
+        Arrays.sort(nums);
+        
+        if (nums[0] != 0) {
+                return 0; 
+            }
+        
+       
+        for(int i = 1; i < nums.length;i++) {
+            int preNum = nums[i - 1], nextNum = nums[i];
+            int distinct = nextNum - preNum;
+            
+            if(distinct != 1) {
+                return preNum + 1;
+            }
+        } 
+        
+        return nums[nums.length - 1] + 1;
+    }
+}
