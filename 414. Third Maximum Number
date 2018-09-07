@@ -1,0 +1,41 @@
+//not working
+对一些特殊情况不通用
+：：Input:
+[1,1,2]
+Output:
+1
+Expected:
+2
+
+class Solution {
+    public int thirdMax(int[] nums) {
+        int leng = nums.length;
+        if(leng == 1) {
+            return nums[0];
+        }
+        if(leng ==2) {
+            
+            if (nums[0] >= nums[1]) {
+                return nums[0];
+            }
+            return nums[1];
+        }
+        
+        Arrays.sort(nums);
+        int i = 3;
+        int currentIndex = leng - 3;
+        while (currentIndex > 0) {
+            int tempNum =  nums[leng - i];
+            
+           if(tempNum != nums[leng - i + 1]) {
+            return tempNum;
+           }
+            
+           else {
+               i++;
+               currentIndex--;
+           }
+        }
+        return nums[0];
+    }
+}
